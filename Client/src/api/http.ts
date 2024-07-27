@@ -2,7 +2,7 @@ import axios from "axios";
 import { IGetUserLT } from "../type/user.type";
 
 const http = axios.create({
-  baseURL: " http://localhost:3000/",
+  baseURL: " http://localhost:5001/",
 });
 axios.interceptors.response.use(
   function (response) {

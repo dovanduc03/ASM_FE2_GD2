@@ -13,12 +13,14 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.0",
-    "@types/node": "^16.11.14",
+    "@types/node": "^18.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-toastify": "^4.1.0",
     "@types/yup": "^0.32.0",
     "axios": "^1.7.2",
+    "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.52.1",
@@ -30,14 +32,17 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "friendly-errors-webpack-plugin": "^1.7.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^8.2.2",
     "postcss": "^8.4.40",
     "tailwindcss": "^3.4.7",
-    "webpackbar": "^6.0.1"
+    "vite": "^4.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "server": "json-server --watch db.json -m ./node_modules/json-server-auth --port 5001",
+    "start": "concurrently \"npm run dev\" \"npm run server\"",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

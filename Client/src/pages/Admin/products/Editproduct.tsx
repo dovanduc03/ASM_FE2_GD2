@@ -73,7 +73,7 @@ export default function EditProduct() {
   const mutation = useMutation({
     mutationFn: (values: FormData) => {
       console.log("Updating product with ID:", id);
-      return axios.put(`http://localhost:3000/products/${id}`, values);
+      return axios.put(`http://localhost:5001/products/${id}`, values);
     },
     onSuccess: () => {
       toast.success("Product updated successfully");
