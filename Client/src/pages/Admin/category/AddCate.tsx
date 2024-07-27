@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, TextField, Typography, Stack, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -68,7 +68,7 @@ export default function AddCategory() {
   });
 
   // Cập nhật giá trị form khi dữ liệu đã được tải
-  React.useEffect(() => {
+  useEffect(() => {
     if (categoryData) {
       setValue("name", categoryData.name);
     }

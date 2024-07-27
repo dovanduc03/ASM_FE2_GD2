@@ -142,7 +142,7 @@ export default function ListProduct() {
                 <TableCell align="right">
                   <Button
                     component={Link}
-                    to={`/admin/product/${product.id}/edit`}
+                    to={`/admin/product/edit`}
                     variant="contained"
                     color="primary"
                   >

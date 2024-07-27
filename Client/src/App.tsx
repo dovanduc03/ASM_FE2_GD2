@@ -2,10 +2,12 @@ import React from "react";
 import { useRoutes } from "react-router-dom";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
-import MainLayout from "./pages/Admin/layouts/MainLayout";
+import MainLayout from "./pages/Layout";
 import Dashboard from "./pages/Admin/Dashboard";
 import AddCate from "./pages/Admin/category/AddCate";
 import ListCate from "./pages/Admin/category/ListCate";
@@ -16,9 +18,11 @@ import { AuthProvider } from "./pages/Auth/AuthContext";
 import ChiTitSnPhm from "./pages/ChiTitSnPhm";
 import GiHng from "./pages/Cart/GiHng";
 import ProductList from "./components/ProductList";
-import LayoutUser from "./components/LayoutUser";
+import LayoutUser from "./pages/Layout/LayoutUser";
 import Home from "./pages/User/Home";
 import ThanhTon from "./pages/Checkout/ThanhTon";
+import { LoadingProvider } from "./contexts/loading"; // Import the LoadingProvider
+import Editproduct from "./pages/Admin/products/Editproduct";
 
 // Tạo QueryClient
 const queryClient = new QueryClient();
@@ -48,10 +52,10 @@ const routeConfig = [
       { path: "", element: <Dashboard /> },
       { path: "products", element: <ListProduct /> },
       { path: "product/add", element: <Addproduct /> },
-      { path: "product/:id/edit", element: <Addproduct /> },
+      { path: "product/edit/:id", element: <Editproduct /> },
       { path: "category", element: <ListCate /> },
       { path: "category/add", element: <AddCate /> },
-      { path: "category/:id/edit", element: <AddCate /> },
+      { path: "category/edit/:id", element: <AddCate /> },
     ],
   },
   { path: "/login", element: <Login /> },
@@ -76,9 +80,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AuthProvider>
-          <main>
-            <AppRoutes />
-          </main>
+          <LoadingProvider>
+            <main>
+              <AppRoutes />
+              <ToastContainer /> {/* Add ToastContainer here */}
+            </main>
+          </LoadingProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

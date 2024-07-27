@@ -30,9 +30,11 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.8",
-    "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8"
+    "autoprefixer": "^10.4.19",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7",
+    "webpackbar": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

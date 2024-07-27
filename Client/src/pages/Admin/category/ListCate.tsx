@@ -86,7 +86,7 @@ export default function ListCate() {
                 </TableCell>
                 <TableCell align="right">
                   <Link
-                    to={`/admin/category/${category.id}/edit`}
+                    to={`/admin/category/edit/${category.id}`}
                     style={{ textDecoration: 'none', color: '#1976d2' }}
                   >
                     Sửa
