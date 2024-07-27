@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 
 
-import Features1 from "../components/ingredient/Features1";
+import Features1 from "../../components/ingredient/Features1";
 
 const GiHng: FunctionComponent = () => {
   return (

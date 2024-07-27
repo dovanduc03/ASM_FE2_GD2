@@ -13,11 +13,12 @@ import Addproduct from "./pages/Admin/products/Addproduct";
 import ListProduct from "./pages/Admin/products/ListProduct";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./pages/Auth/AuthContext";
-import CaHng from "./pages/CaHng";
 import ChiTitSnPhm from "./pages/ChiTitSnPhm";
-import ProductCard from "./components/ProductCard";
-import GiHng from "./pages/GiHng";
-import ThanhTon from "./pages/ThanhTon";
+import GiHng from "./pages/Cart/GiHng";
+import ProductList from "./components/ProductList";
+import LayoutUser from "./components/LayoutUser";
+import Home from "./pages/User/Home";
+import ThanhTon from "./pages/Checkout/ThanhTon";
 
 // Tạo QueryClient
 const queryClient = new QueryClient();
@@ -26,16 +27,15 @@ const queryClient = new QueryClient();
 const routeConfig = [
   {
     path: "/",
-    element: <CaHng />,
+    element: <LayoutUser />,
     children: [
-      { path: "", element: <CaHng /> },
-      { path: "product", element: <ProductCard /> },
-      { path: ":id/product", element: <ChiTitSnPhm /> },
+      { path: "", element: <Home /> },
+      { path: "product", element: <ProductList /> },
+      { path: "product/:id", element: <ChiTitSnPhm /> },
     ],
   },
   {
     path: "/cart",
-    element: <GiHng />,
     children: [
       { path: "", element: <GiHng /> },
       { path: "checkout", element: <ThanhTon /> },

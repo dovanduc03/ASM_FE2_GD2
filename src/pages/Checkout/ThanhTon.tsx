@@ -1,11 +1,12 @@
 import { FunctionComponent } from "react";
-import Header from "../components/Header";
-import FeatureItems from "../components/ingredient/FeatureItems";
-import Warranty from "../components/ingredient/Warranty";
-import Footer from "../components/Footer";
-import Tinhtonghdct from "../components/Tinhtonghdct";
-import FormInfor from "../components/FormInfor";
-import Banerthanhtoan from "../components/banerthanhtoan";
+import Header from "../../components/Header";
+import Banerthanhtoan from "../../components/banerthanhtoan";
+import FormInfor from "../../components/FormInfor";
+import Tinhtonghdct from "../../components/Tinhtonghdct";
+import FeatureItems from "../../components/ingredient/FeatureItems";
+import Warranty from "../../components/ingredient/Warranty";
+import Footer from "../../components/Footer";
+
 
 const ThanhTon: FunctionComponent = () => {
   return (
