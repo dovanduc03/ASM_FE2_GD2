@@ -59,7 +59,7 @@ export default function Register() {
       const result = await http.post("/register", { ...rest });
       if (result) {
         localStorage.setItem("user", JSON.stringify(result.data));
-        navigate("/");
+        navigate("/login");
         toast.success("Đăng kí tài khoản thành công");
       }
     } catch (error: any) {

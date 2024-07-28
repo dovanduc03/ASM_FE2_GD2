@@ -124,6 +124,16 @@
       "email": "hai123@gmail.com",
       "password": "$2a$10$sr1lG6IwuaSMdGOTqCZNsOdwlWaRPT52b4a/vt16/g7RgeZ6gknjy",
       "id": "WU7sQwR"
+    },
+    {
+      "email": "abc@gmail.com",
+      "password": "$2a$10$DSVuZRWI1SjOpf0AyD/lve9O709BCGkmNo9DlzdaOEe17gLqomFRu",
+      "id": "30MJMrL"
+    },
+    {
+      "email": "abcc@gmail.com",
+      "password": "$2a$10$zxpoAAW7W5sktQiBFoY1TuZdvHolwwPCJocUahsU3toxvX7b92Dy.",
+      "id": "Va9fkOk"
     }
   ],
   "categories": [
@@ -244,6 +254,16 @@
       "count": 1,
       "productId": 7,
       "id": "xxCsh9Y"
+    },
+    {
+      "count": 2,
+      "productId": 7,
+      "id": "miCeXuH"
+    },
+    {
+      "count": 1,
+      "productId": 8,
+      "id": "GSKxoEL"
     }
   ],
   "products": [
