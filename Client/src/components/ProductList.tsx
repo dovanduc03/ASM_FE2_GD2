@@ -32,6 +32,7 @@ export default function ProductList() {
             maxWidth: '1200px',
           }}
         >
+                
           {isLoading ? (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
               <CircularProgress size={60} />

@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Container, Typography, Grid, TextField, CircularProgress } from "@mui/material";
 import { IProduct } from "../type/products.type";
 import { getOneProduct } from "../api/productApi";
@@ -17,8 +17,10 @@ export default function ChiTitSnPhm() {
   const [getproduct, setProductList] = useState<IProduct>();
   const [buyCount, setBuyCount] = useState(1);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
+
     const fetchProduct = async () => {
       try {
         console.log('Fetching product with ID:', idParams);
@@ -207,6 +209,7 @@ export default function ChiTitSnPhm() {
               </Button>
             </Box>
             <Box sx={{ display: 'flex', gap: '12px' }}>
+
               <Button
                 variant="contained"
                 color="primary"
@@ -225,10 +228,12 @@ export default function ChiTitSnPhm() {
                     const productId = Number(getproduct.id);
                     const validCount = buyCount > 0 ? buyCount : 1;
                     addToCart(validCount, productId);
+                    navigate('/cart')
                   } else {
                     toast.error('Sản phẩm không hợp lệ');
                   }
                 }}
+                
               >
                 Thêm vào giỏ hàng
               </Button>
@@ -244,6 +249,9 @@ export default function ChiTitSnPhm() {
                   '&:hover': {
                     backgroundColor: '#a87d5c', // Darker brown on hover
                   },
+                }}
+                onClick={()=>{
+                  navigate('/cart/checkout')
                 }}
               >
                 Thanh toán

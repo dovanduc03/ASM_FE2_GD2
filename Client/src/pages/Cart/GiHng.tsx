@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 
 
 import Features1 from "../../components/ingredient/Features1";
+import { Link, useNavigate } from "react-router-dom";
 
 const GiHng: FunctionComponent = () => {
   return (
@@ -33,7 +34,10 @@ const GiHng: FunctionComponent = () => {
       </div>
       <div className="flex flex-row items-start justify-start gap-[6px] text-base">
         <div className="relative font-medium inline-block min-w-[48px] z-[1]">
-          Home
+          
+          <Link to={'/'} style={{ textDecoration: "none", color: "black" }}>
+           Home
+          </Link>
         </div>
         <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
           <img
@@ -146,7 +150,10 @@ const GiHng: FunctionComponent = () => {
             >
               <div className="h-[59px] w-[222px] relative rounded-mini box-border hidden border-[1px] border-solid border-black" />
               <div className="relative text-xl font-poppins text-black text-left inline-block min-w-[105px] z-[1]">
+                <Link to={'cart/checkout'}  style={{ textDecoration: "none", color: "black" }}>
                 Check Out
+                </Link>
+             
               </div>
             </button>
           </div>

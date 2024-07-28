@@ -1,77 +1,134 @@
-import { FunctionComponent } from "react";
+import React, { useState } from "react";
+import { AppBar, Toolbar, Typography, IconButton, Box, Container, MenuItem, Menu } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../pages/Auth/AuthContext";
+
+
+const Logo = styled('img')({
+  height: '32px',
+});
+
+
+const NavLinks = styled(Box)({
+  display: 'flex',
+  flexGrow: 1,
+  justifyContent: 'space-between',
+});
+
+const NavItem = styled(MenuItem)(({ theme }) => ({
+  marginLeft: theme.spacing(3),
+  "& a": {
+    color: "inherit",
+    textDecoration: 'none',
+  },
+  "& a:hover": {
+    textDecoration: 'none',
+  },
+}));
+
+const Icon = styled(IconButton)(({ theme }) => ({
+  marginLeft: theme.spacing(2),
+}));
 
 
 
-const Header: FunctionComponent= () => {
+const Header: React.FC = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+    handleClose();
+  };
+
   return (
-    <header
-      className={`self-stretch bg-color-white flex flex-row items-end justify-start pt-[29px] px-[54px] pb-[30px] box-border gap-[266px] top-[0] z-[99] sticky max-w-full text-left text-15xl text-black font-montserrat mq450:gap-[33px] mq800:gap-[66px] mq1350:gap-[133px] mq1350:pl-[27px] mq1350:pr-[27px] mq1350:box-border `}
-    >
-      <div className="h-[100px] w-[1440px] relative bg-color-white hidden max-w-full" />
-      <div className="flex flex-row items-start justify-start gap-[5px]">
-        <div className="w-[50px] flex flex-col items-start justify-start pt-[4.5px] px-0 pb-0 box-border">
-          <img
-            className="self-stretch h-8 relative max-w-full overflow-hidden shrink-0 object-cover z-[1]"
-            loading="lazy"
-            alt=""
-            src="/meubel-house-logos05@2x.png"
-          />
-        </div>
-        <a className="[text-decoration:none] relative font-bold text-[inherit] [-webkit-text-stroke:1px_#000] whitespace-nowrap z-[1]">
-          Furniro
-        </a>
-      </div>
-      <div className="w-[835px] flex flex-col items-start justify-end pt-0 px-0 pb-1.5 box-border max-w-full text-base font-poppins mq1125:w-0">
-        <div className="self-stretch flex flex-row items-start justify-between gap-[20px] mq1125:hidden">
-          <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-            <a className="[text-decoration:none] relative font-medium text-[inherit] inline-block min-w-[48px] z-[1]">
-              Home
-            </a>
-          </div>
-          <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-            <a className="[text-decoration:none] relative font-medium text-[inherit] inline-block min-w-[42px] z-[1]">
-              Shop
-            </a>
-          </div>
-          <div className="flex flex-col items-start justify-start pt-0.5 px-0 pb-0">
-            <a className="[text-decoration:none] relative font-medium text-[inherit] inline-block min-w-[49px] z-[1]">
+    <AppBar position="sticky" color="default">
+      <Container maxWidth="lg">
+        <Toolbar disableGutters>
+          <Box display="flex" alignItems="center" flexGrow={1}>
+            <Logo src="/meubel-house-logos05@2x.png" alt="Furniro" />
+            <Typography variant="h6" component="a" href="/" sx={{ marginLeft: 2, textDecoration: 'none', color: 'inherit' }}>
+              Furniro
+            </Typography>
+          </Box>
+          <NavLinks>
+            <NavItem>
+              <Link to='/'>Home</Link>
+            </NavItem>
+            <NavItem>
+              <Link to='/'>Shop</Link>
+            </NavItem>
+            <NavItem >
               About
-            </a>
-          </div>
-          <div className="w-[149px] flex flex-col items-start justify-start pt-0.5 pb-0 pr-5 pl-0 box-border">
-            <a className="[text-decoration:none] relative font-medium text-[inherit] inline-block min-w-[66px] z-[1]">
+            </NavItem>
+            <NavItem >
               Contact
-            </a>
-          </div>
-          <div className="w-[247px] flex flex-row items-start justify-start gap-[45px]">
-            <img
-              className="h-7 w-7 relative overflow-hidden shrink-0 min-h-[28px] z-[1]"
-              loading="lazy"
-              alt=""
-              src="/mdiaccountalertoutline.svg"
-            />
-            <img
-              className="h-7 w-7 relative overflow-hidden shrink-0 min-h-[28px] z-[1]"
-              loading="lazy"
-              alt=""
-              src="/akariconssearch.svg"
-            />
-            <img
-              className="h-7 w-7 relative overflow-hidden shrink-0 min-h-[28px] z-[1]"
-              loading="lazy"
-              alt=""
-              src="/akariconsheart.svg"
-            />
-            <img
-              className="h-7 w-7 relative overflow-hidden shrink-0 min-h-[28px] z-[1]"
-              loading="lazy"
-              alt=""
-              src="/antdesignshoppingcartoutlined.svg"
-            />
-          </div>
-        </div>
-      </div>
-    </header>
+            </NavItem>
+            <Box display="flex" alignItems="center">
+              {/* test */}
+              <IconButton color="inherit" onClick={handleClick}>
+                {/* Thay thế hình ảnh của biểu tượng bằng một biểu tượng tương tự */}
+                <img src="/mdiaccountalertoutline.svg" alt="Account" />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                PaperProps={{
+                  sx: {
+                    width: 200,
+                    maxWidth: '100%',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                  },
+                }}
+              >
+                {!isAuthenticated && ( // Nếu chưa xác thực, hiển thị Register và Login
+                  <>
+                    <MenuItem onClick={handleClose} component={Link} to="/register">
+                      <Typography>Register</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleClose} component={Link} to="/login">
+                      <Typography>Login</Typography>
+                    </MenuItem>
+                  </>
+                )}
+                {isAuthenticated && ( // Nếu đã xác thực, hiển thị Profile và Logout
+                  <>
+                    <MenuItem onClick={handleClose} component={Link} to="/profile">
+                      <Typography>Profile</Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout}>
+                      <Typography>Logout</Typography>
+                    </MenuItem>
+                  </>
+                )}
+              </Menu>
+              {/* test */}
+              <Icon color="inherit">
+                <img src="/akariconssearch.svg" alt="Search" />
+              </Icon>
+              <Icon color="inherit">
+                <img src="/akariconsheart.svg" alt="Wishlist" />
+              </Icon>
+              <Icon color="inherit">
+                <img src="/antdesignshoppingcartoutlined.svg" alt="Cart" />
+              </Icon>
+            </Box>
+          </NavLinks>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
 

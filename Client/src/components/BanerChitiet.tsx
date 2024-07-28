@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 
 interface BanerChitietProps {
   productName: string;
@@ -11,9 +12,9 @@ const BanerChitiet: FunctionComponent<BanerChitietProps> = ({ productName }) => 
     >
       <div className="h-[100px] w-[1440px] relative bg-linen-200 hidden max-w-full" />
       <div className="flex flex-row items-center justify-start gap-[14px]">
-        <a className="[text-decoration:none] relative text-[inherit] inline-block min-w-[48px] z-[1] text-gray-600">
-          Home
-        </a>
+      <Link to={`/`} style={{ textDecoration: "none", color: "black" }}>
+          <a className="text-darkgray">Home</a>
+        </Link>
         <div className="flex flex-row items-center justify-start pt-0.5 px-0 pb-0">
           <img
             className="w-5 h-5 relative overflow-hidden shrink-0 object-contain z-[1]"
@@ -22,9 +23,10 @@ const BanerChitiet: FunctionComponent<BanerChitietProps> = ({ productName }) => 
             src="/dashiconsarrowdownalt2@2x.png"
           />
         </div>
-        <a className="[text-decoration:none] relative text-[inherit] inline-block min-w-[41px] z-[1] text-gray-600">
-          Shop
-        </a>
+        <Link to={'/'} className="text-darkgray">
+          <a className="text-darkgray">Shop</a>
+        </Link>
+      
         <div className="flex flex-row items-center justify-start pt-0.5 px-0 pb-0">
           <img
             className="w-5 h-5 relative overflow-hidden shrink-0 object-contain z-[1]"

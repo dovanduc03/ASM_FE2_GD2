@@ -51,8 +51,8 @@ const routeConfig = [
     children: [
       { path: "", element: <Dashboard /> },
       { path: "products", element: <ListProduct /> },
-      { path: "product/add", element: <Addproduct /> },
-      { path: "product/edit/:id", element: <Editproduct /> },
+      { path: "products/add", element: <Addproduct /> },
+      { path: "products/edit/:id", element: <Editproduct /> },
       { path: "category", element: <ListCate /> },
       { path: "category/add", element: <AddCate /> },
       { path: "category/edit/:id", element: <AddCate /> },
