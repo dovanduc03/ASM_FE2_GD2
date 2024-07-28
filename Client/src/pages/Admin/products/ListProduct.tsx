@@ -98,7 +98,7 @@ export default function ListProduct() {
             <TableCell colSpan={2} align="center">
               <Button
                 component={Link}
-                to="/admin/product/add"
+                to="/admin/products/add"
                 variant="contained"
                 color="primary"
               >
@@ -142,7 +142,7 @@ export default function ListProduct() {
                 <TableCell align="right">
                   <Button
                     component={Link}
-                    to={`/admin/product/edit`}
+                    to={`/admin/products/edit/${product.id}`}
                     variant="contained"
                     color="primary"
                   >

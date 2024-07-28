@@ -2,18 +2,20 @@ import { FunctionComponent } from "react";
 import FeatureItems from "./FeatureItems";
 import Warranty from "./Warranty";
 import Footer from "../Footer";
+import { Container } from "postcss";
 
-export type FeaturesType = {
-  className?: string;
-};
-
-const Features: FunctionComponent<FeaturesType> = ({ className = "" }) => {
+const Features: FunctionComponent = () => {
   return (
+    <div style={{ width: '100%' }}>
     <section
-      className={`self-stretch flex flex-col items-end justify-start py-0 pr-[3px] pl-0 box-border max-w-full text-left text-6xl text-gray-100 font-poppins ${className}`}
+      className="flex flex-col items-center justify-start py-0 px-0 max-w-full text-left text-6xl text-gray-100 font-poppins "
     >
-      <div className="self-stretch bg-linen-100 flex flex-col items-center justify-between py-[100px] px-[53px] box-border min-h-[270px] max-w-full mq800:pl-[26px] mq800:pr-[26px] mq800:box-border">
-        <div className="self-stretch flex flex-row items-center justify-between max-w-full gap-[20px] mq1350:flex-wrap">
+      <div
+        className="bg-linen-100 flex flex-col items-center justify-between py-[100px] px-[53px] min-h-[270px] max-w-full box-border"
+        style={{ width: '100%' }}
+      >
+        <div className="flex flex-row items-center justify-between gap-[20px] flex-wrap max-w-full"
+            style={{ width: '100%' }}>
           <FeatureItems
             trophy1="/trophy-1.svg"
             highQuality="High Quality"
@@ -30,10 +32,13 @@ const Features: FunctionComponent<FeaturesType> = ({ className = "" }) => {
             highQuality="24 / 7 Support"
             craftedFromTopMaterials="Dedicated support"
           />
+          
         </div>
       </div>
       <Footer />
     </section>
+    </div>
+    
   );
 };
 

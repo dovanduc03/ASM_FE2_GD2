@@ -1,17 +1,17 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Button, Container, Typography, Grid, TextField, CircularProgress } from "@mui/material";
-import { IProduct } from "../type/products.type";
-import { getOneProduct } from "../api/productApi";
+import { IProduct } from "../../type/products.type";
+import { getOneProduct } from "../../api/productApi";
 import { toast } from "react-toastify";
-import { addtoCartUser } from "../api/cart";
-import Header from "../components/Header";
-import BanerChitiet from "../components/BanerChitiet";
-import Footer from "../components/Footer";
+import { addtoCartUser } from "../../api/cart";
+import Header from "../../components/Header";
+import BanerChitiet from "../../components/BanerChitiet";
+import Footer from "../../components/Footer";
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 
-export default function ChiTitSnPhm() {
+export default function ChiTietSanPham() {
   const { id } = useParams();
   const idParams = id as string;
   const [getproduct, setProductList] = useState<IProduct>();
@@ -261,6 +261,7 @@ export default function ChiTitSnPhm() {
             Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate and pronounced. The analogue knobs allow you to fine-tune the controls to your personal preferences while the guitar-influenced leather strap enables easy and stylish travel.
           </Typography>
         </Box>
+        {/* Thay thế làm slider */}
         <Grid container spacing={2} justifyContent="center">
           <Grid item xs={12} sm={6}>
             <Box component="img" src="/group-107@2x.png" alt="" loading="lazy" sx={{ width: '100%', height: 'auto', objectFit: 'cover', minWidth: 393, minHeight: 348 }} />
@@ -269,6 +270,7 @@ export default function ChiTitSnPhm() {
             <Box component="img" src="/group-106@2x.png" alt="" loading="lazy" sx={{ width: '100%', height: 'auto', objectFit: 'cover', minWidth: 393, minHeight: 348 }} />
           </Grid>
         </Grid>
+        {/* Thay thế làm slider */}
       </Container>
       <Footer />
     </Box>

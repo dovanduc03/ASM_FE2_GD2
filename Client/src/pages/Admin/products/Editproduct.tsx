@@ -30,7 +30,7 @@ export default function EditProduct() {
   // Fetch product details
   useEffect(() => {
     if (id) {
-      axios.get<IProduct>(`http://localhost:3000/products/${id}`)
+      axios.get<IProduct>(`http://localhost:5001/products/${id}`)
         .then(({ data }) => setProduct(data))
         .catch((error) => console.error("Error fetching product: ", error));
     }

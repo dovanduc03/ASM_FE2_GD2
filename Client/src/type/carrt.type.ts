@@ -11,6 +11,5 @@ export interface ICart{
 export interface ICartList{
     product:IProduct
     count: number;
-    productId: number;
     id: number;
 }

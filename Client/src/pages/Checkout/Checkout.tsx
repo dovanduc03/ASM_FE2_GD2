@@ -8,7 +8,7 @@ import Warranty from "../../components/ingredient/Warranty";
 import Footer from "../../components/Footer";
 
 
-const ThanhTon: FunctionComponent = () => {
+const Checkout: FunctionComponent = () => {
   return (
     <div className="w-full relative bg-color-white overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[50px] box-border leading-[normal] tracking-[normal]">
       <Header />
@@ -43,4 +43,4 @@ const ThanhTon: FunctionComponent = () => {
   );
 };
 
-export default ThanhTon;
+export default Checkout;

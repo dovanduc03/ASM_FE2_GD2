@@ -4,7 +4,6 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
-
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import MainLayout from "./pages/Layout";
@@ -15,14 +14,14 @@ import Addproduct from "./pages/Admin/products/Addproduct";
 import ListProduct from "./pages/Admin/products/ListProduct";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./pages/Auth/AuthContext";
-import ChiTitSnPhm from "./pages/ChiTitSnPhm";
-import GiHng from "./pages/Cart/GiHng";
+import ChiTitSnPhm from "./pages/User/ChiTietSanPham";
 import ProductList from "./components/ProductList";
 import LayoutUser from "./pages/Layout/LayoutUser";
 import Home from "./pages/User/Home";
-import ThanhTon from "./pages/Checkout/ThanhTon";
 import { LoadingProvider } from "./contexts/loading"; // Import the LoadingProvider
 import Editproduct from "./pages/Admin/products/Editproduct";
+import CartList from "./pages/Cart/CartList";
+import Checkout from "./pages/Checkout/Checkout";
 
 // Tạo QueryClient
 const queryClient = new QueryClient();
@@ -41,8 +40,8 @@ const routeConfig = [
   {
     path: "/cart",
     children: [
-      { path: "", element: <GiHng /> },
-      { path: "checkout", element: <ThanhTon /> },
+      { path: "", element: <CartList /> },
+      { path: "checkout", element: <Checkout /> },
     ],
   },
   {
@@ -51,8 +50,8 @@ const routeConfig = [
     children: [
       { path: "", element: <Dashboard /> },
       { path: "products", element: <ListProduct /> },
-      { path: "product/add", element: <Addproduct /> },
-      { path: "product/edit/:id", element: <Editproduct /> },
+      { path: "products/add", element: <Addproduct /> },
+      { path: "products/edit/:id", element: <Editproduct /> },
       { path: "category", element: <ListCate /> },
       { path: "category/add", element: <AddCate /> },
       { path: "category/edit/:id", element: <AddCate /> },
