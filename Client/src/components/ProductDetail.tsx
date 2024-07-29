@@ -36,9 +36,7 @@ const ProductDetail: FunctionComponent = () => {
   };
   
 
-  const onGroupButtonClick = useCallback(() => {
-    navigate("/gi-hng");
-  }, [navigate]);
+
 
   return (
     <div className="self-stretch flex flex-row items-start justify-start pt-[35px] px-[99px] pb-[55px] box-border gap-[82px] max-w-full z-[2] mt-[-3px] text-left text-smi text-black font-poppins lg:flex-wrap lg:gap-[41px] lg:pl-[49px] lg:pr-[49px] lg:box-border mq450:pb-[23px] mq450:box-border mq750:gap-[20px] mq750:pl-6 mq750:pr-6 mq750:box-border mq1050:pb-9 mq1050:box-border">

@@ -172,7 +172,10 @@ const Header: React.FC = () => {
                   <img src="/akariconsheart.svg" alt="Wishlist" />
                 </Icon>
                 <Icon color="inherit">
-                  <img src="/antdesignshoppingcartoutlined.svg" alt="Cart" />
+                  <img src="/antdesignshoppingcartoutlined.svg" alt="Cart" 
+                  onClick={()=>{
+                    navigate('/cart')
+                  }}/>
                 </Icon>
               </Box>
             </NavLinks>
