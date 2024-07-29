@@ -21,7 +21,7 @@ import {
   Typography,
 } from '@mui/material';
 import Features from '../../components/ingredient/Features';
-import { ICartList } from '../../type/carrt.type';
+import { ICartList } from '../../type/cart.type';
 
 const CartList: FunctionComponent = () => {
   const [cartList, setCartList] = useState<ICartList[]>([]);

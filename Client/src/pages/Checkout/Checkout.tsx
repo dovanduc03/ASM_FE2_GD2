@@ -1,14 +1,17 @@
 import { FunctionComponent } from "react";
 import Header from "../../components/Header";
 import Banerthanhtoan from "../../components/banerthanhtoan";
-import FormInfor from "../../components/FormInfor";
-import Tinhtonghdct from "../../components/Tinhtonghdct";
+import FormInfor from "./FormInfor";
+
 import FeatureItems from "../../components/ingredient/FeatureItems";
 import Warranty from "../../components/ingredient/Warranty";
 import Footer from "../../components/Footer";
+import Tinhtonghdct from "./Tinhtonghdct";
 
 
 const Checkout: FunctionComponent = () => {
+ 
+  
   return (
     <div className="w-full relative bg-color-white overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[50px] box-border leading-[normal] tracking-[normal]">
       <Header />

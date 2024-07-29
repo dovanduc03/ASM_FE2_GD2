@@ -1,4 +1,4 @@
-import { ICartList } from "../type/carrt.type";
+import { ICartList } from "../type/cart.type";
 import { http } from "./http";
 
 export const getCartList = async () => {

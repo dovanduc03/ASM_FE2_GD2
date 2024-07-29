@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useMemo, useState } from "react";
-import { getCartList } from "../api/cart";
-import { ICartList } from "../type/cart.type";
+import { ICartList } from "../../type/cart.type";
+import { getCartList } from "../../api/cart";
 
 const Tinhtonghdct: FunctionComponent = () => {
   const [cartList, setCartList] = useState<ICartList[]>([]);
@@ -76,19 +76,22 @@ const Tinhtonghdct: FunctionComponent = () => {
         <p>No items in the cart.</p>
       )}
 
-      {/* Hiển thị tổng cộng */}
+      {/* Hiển thị tổng cộng và nút "Place order" */}
       <div className="flex flex-col items-center justify-center gap-[14px] text-base">
-        <h1 className="m-0 text-inherit font-medium text-center">Total</h1>
-        <b className="text-5xl text-primary text-center">
-          {totalCurrentPurchasePrice.toFixed(0)}₫
-        </b>
-      </div>
+        {/* Tổng cộng */}
+        <div className="text-center">
+          <h1 className="m-0 text-inherit font-medium">Total</h1>
+          <b className="text-5xl text-primary">
+            {totalCurrentPurchasePrice.toFixed(0)}₫
+          </b>
+        </div>
 
-      {/* Nút "Place order" */}
-      <div className="flex justify-center">
-        <button className="py-[15px] px-5 bg-transparent w-[318px] rounded-mini border-[1px] border-black hover:bg-darkslategray-300 hover:border-darkslategray-100">
-          <div className="text-xl font-poppins text-black">Place order</div>
-        </button>
+        {/* Nút "Place order" */}
+        <div className="flex justify-center">
+          <button className="py-[15px] px-5 bg-transparent w-[400px] rounded-mini border-[1px] border-black hover:bg-darkslategray-300 hover:border-darkslategray-100">
+            <div className="text-xl font-poppins text-black">Place order</div>
+          </button>
+        </div>
       </div>
     </div>
   );
