@@ -52,6 +52,8 @@ const Header: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
+
 
   const open = Boolean(anchorEl);
   const { isAuthenticated, logout } = useAuth();
@@ -84,6 +86,24 @@ const Header: React.FC = () => {
       setLoading(false);
     }
   };
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    if (menuAnchorEl) {
+      setMenuAnchorEl(null);
+    } else {
+      setMenuAnchorEl(event.currentTarget);
+    }
+  };
+
+  const handleItemClick = (path: string) => {
+    setMenuAnchorEl(null);
+    navigate(path);
+  };
+
+  const handleCloseMenu = () => {
+    setMenuAnchorEl(null);
+  };
+
 
   return (
     <>
@@ -131,10 +151,23 @@ const Header: React.FC = () => {
                 </Box>
                 {/* search */}
                 {/* Account */}
-                <IconButton color="inherit" onClick={handleClick}>
-                  {/* Thay thế hình ảnh của biểu tượng bằng một biểu tượng tương tự */}
+                <IconButton color="inherit" onClick={handleMenuClick} sx={{ mr: 1 }}>
                   <img src="/mdiaccountalertoutline.svg" alt="Account" />
                 </IconButton>
+                <Menu
+                  anchorEl={menuAnchorEl}
+                  open={Boolean(menuAnchorEl)}
+                  onClose={handleCloseMenu}
+                >
+                  <MenuItem onClick={() => handleItemClick('/login')} sx={{ p: 2 }}>
+                    Login
+                  </MenuItem>
+                  <MenuItem onClick={() => handleItemClick('/register')} sx={{ p: 2 }}>
+                    Register
+                  </MenuItem>
+
+                </Menu>
+
                 <Icon color="inherit">
                   <img src="/akariconsheart.svg" alt="Wishlist" />
                 </Icon>
