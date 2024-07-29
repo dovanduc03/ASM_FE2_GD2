@@ -8,8 +8,13 @@ export interface ICart{
 }
 
 
-export interface ICartList{
-    product:IProduct
-    count: number;
+export interface ICartList {
     id: number;
-}
+    count: number;
+    product?: {
+      id: number;
+      name: string;
+      price: string;
+      image?: string;
+    };
+  }

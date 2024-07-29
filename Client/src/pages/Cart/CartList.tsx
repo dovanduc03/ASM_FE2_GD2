@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState, FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { deleteCart, descCount, getCartList } from '../../api/cart';
-import { ICartList } from '../../type/cart.type';
+
 import Header from '../../components/Header';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -21,31 +21,32 @@ import {
   Typography,
 } from '@mui/material';
 import Features from '../../components/ingredient/Features';
+import { ICartList } from '../../type/carrt.type';
 
 const CartList: FunctionComponent = () => {
-  // State để lưu danh sách sản phẩm trong giỏ hàng
   const [cartList, setCartList] = useState<ICartList[]>([]);
   const navigate = useNavigate();
 
-  // Khi component được render, lấy danh sách sản phẩm trong giỏ hàng từ API
   useEffect(() => {
     getCartList().then(({ data }) => setCartList(data));
   }, []);
 
-  // Tính tổng giá trị của giỏ hàng
+  // Tính tổng giá trị mua hàng hiện tại
   const totalCurrentPurchasePrice = useMemo(() => {
     const groupedById = cartList.reduce((acc, item) => {
-      const id = item.product.id;
-      const price = parseFloat(item.product.price) || 0;
-      const count = Number(item.count) || 0;
+      if (item.product && item.product.id) {
+        const id = item.product.id;
+        const price = parseFloat(item.product.price) || 0;
+        const count = Number(item.count) || 0;
 
-      if (!acc[id]) {
-        acc[id] = { total: 0, price };
+        if (!acc[id]) {
+          acc[id] = { total: 0, price };
+        }
+
+        acc[id].total += count;
       }
-
-      acc[id].total += count;
       return acc;
-    }, {});
+    }, {} as Record<number, { total: number; price: number }>);
 
     return Object.values(groupedById).reduce((total, item) => {
       const { total: count, price } = item;
@@ -53,7 +54,6 @@ const CartList: FunctionComponent = () => {
     }, 0);
   }, [cartList]);
 
-  // Xử lý xóa sản phẩm khỏi giỏ hàng
   const handleDeleteCart = (id: number) => {
     const confirmDelete = confirm('Bạn có chắc chắn muốn xóa không?');
     if (confirmDelete) {
@@ -64,7 +64,6 @@ const CartList: FunctionComponent = () => {
     }
   };
 
-  // Xử lý giảm số lượng sản phẩm
   const handleDescByCount = (id: number) => {
     setCartList((prevCartList) => {
       return prevCartList.map((item) => {
@@ -78,7 +77,6 @@ const CartList: FunctionComponent = () => {
     });
   };
 
-  // Xử lý thay đổi số lượng sản phẩm
   const handleOnChangeInput = (value: number | string, id: number) => {
     const newCount = Number(value);
 
@@ -93,7 +91,6 @@ const CartList: FunctionComponent = () => {
     });
   };
 
-  // Xử lý tăng số lượng sản phẩm
   const handleAscByCount = (id: number) => {
     setCartList((prevCartList) => {
       return prevCartList.map((item) => {
@@ -107,7 +104,6 @@ const CartList: FunctionComponent = () => {
     });
   };
 
-  // Điều hướng đến trang thanh toán
   const handleProceedToCheckout = () => {
     navigate('/cart/checkout');
   };
@@ -116,7 +112,6 @@ const CartList: FunctionComponent = () => {
     <div className="w-full relative bg-color-white overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[50px] box-border leading-[normal] tracking-[normal]">
       <Header />
       <section className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-[22px] box-border max-w-full">
-        {/* Tiêu đề trang giỏ hàng */}
         <div className="self-stretch flex flex-col items-center justify-start pt-[61px] pb-[97px] pr-[25px] pl-5 relative gap-[1px] text-left text-29xl text-black font-poppins">
           <div className="w-full h-full absolute !m-[0] top-[0px] right-[0px] bottom-[0px] left-[0px] max-w-full max-h-full flex items-center justify-center z-[0]">
             <img className="w-full h-full overflow-hidden object-contain absolute left-[0px] top-[0px] [transform:scale(1.038)]" alt="" src="/placeholder@2x.png" />
@@ -138,7 +133,6 @@ const CartList: FunctionComponent = () => {
           </div>
         </div>
         
-        {/* Bảng danh sách sản phẩm trong giỏ hàng */}
         <div className="self-stretch bg-color-white flex flex-col items-start justify-start pt-[72px] px-[50px] pb-[63px] box-border gap-[30px] max-w-full text-left text-base text-black font-poppins lg:flex-wrap mq750:gap-[15px] mq750:pt-[47px] mq750:px-[50px] mq750:pb-[41px] mq750:box-border mq450:pl-5 mq450:pr-5 mq450:box-border">
           <div className="self-stretch bg-linen-200 overflow-x-auto flex flex-row items-center justify-between pt-4 pb-4 px-4 gap-4 z-[1]">
             <div className="flex-1 font-medium text-left">Product</div>
@@ -153,10 +147,10 @@ const CartList: FunctionComponent = () => {
             cartList.map((cart) => (
               <div key={cart.id} className="self-stretch flex flex-row items-center justify-between py-4 px-4 gap-4">
                 <div className="flex-1 flex items-center gap-2">
-                  <img className="h-16 w-16 object-cover cursor-pointer" alt="" src={cart.product.image} />
-                  <span>{cart.product.name}</span>
+                  <img className="h-16 w-16 object-cover cursor-pointer" alt="" src={cart.product?.image || '/default-image.png'} />
+                  <span>{cart.product?.name || 'Unknown Product'}</span>
                 </div>
-                <div className="w-[100px] text-left">{cart.product.price}₫</div>
+                <div className="w-[100px] text-left">{cart.product?.price || 'N/A'}₫</div>
                 <div className="w-[100px] flex items-center justify-center gap-2 border border-darkgray p-1 rounded">
                   <IconButton size="small" onClick={() => handleDescByCount(cart.id)}>
                     <RemoveIcon />
@@ -166,7 +160,9 @@ const CartList: FunctionComponent = () => {
                     <AddIcon />
                   </IconButton>
                 </div>
-                <div className="w-[100px] text-left">{cart.product.price * cart.count}₫</div>
+                <div className="w-[100px] text-left">
+                  {cart.product?.price && cart.count ? (parseFloat(cart.product.price) * cart.count).toFixed(0) : '0'}₫
+                </div>
                 <div className="w-[100px] text-left">
                   <IconButton size="small" onClick={() => handleDeleteCart(cart.id)}>
                     <DeleteIcon />
@@ -180,24 +176,42 @@ const CartList: FunctionComponent = () => {
             </Typography>
           )}
           
-          {/* Tổng giá trị giỏ hàng */}
           <div className="self-stretch bg-linen-200 overflow-x-auto flex flex-row items-center justify-center pt-4 pb-4 px-4 gap-4 z-[1]">
             <div className="relative text-xl font-medium text-primary inline-block min-w-[125px] z-[1] mq450:text-base">
-              Total: {totalCurrentPurchasePrice}₫
+              Total: {totalCurrentPurchasePrice.toFixed(0)}₫
             </div>
           </div>
-
-          {/* nút checkout */}
-          <div className="self-stretch bg-linen-200 overflow-x-auto flex flex-row items-center justify-between pt-4 pb-4 px-4 gap-4 z-[1]">
-            <button
-              className="cursor-pointer pt-3 pb-[13px] pr-[58px] pl-[59px] bg-[transparent] flex-1 rounded-mini flex flex-row items-start justify-start whitespace-nowrap z-[1] border-[1px] border-solid border-black hover:bg-darkslategray-300 hover:box-border hover:border-[1px] hover:border-solid hover:border-darkslategray-100"
+          
+          <div className="w-full flex flex-row items-center justify-center gap-4">
+            <Button
+              variant="outlined"
+              onClick={() => navigate('/')}
+              style={{
+                fontSize: '16px', // Kích thước chữ lớn hơn
+                padding: '10px 20px', // Padding lớn hơn
+                borderRadius: '8px', // Bo tròn góc
+                color: 'black', // Màu chữ đen
+                backgroundColor: 'white', // Nền trắng
+                border: '2px solid black', // Viền đen
+              }}
             >
-              <div className="relative text-xl font-poppins text-black text-center min-w-[105px] z-[1] mx-auto">
-                <Link to={'cart/checkout'} style={{ textDecoration: "none", color: "black" }}>
-                  Check Out
-                </Link>
-              </div>
-            </button>
+              Continue Shopping
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleProceedToCheckout}
+              style={{
+                fontSize: '16px', // Kích thước chữ lớn hơn
+                padding: '10px 20px', // Padding lớn hơn
+                borderRadius: '8px', // Bo tròn góc
+                color: 'white', // Màu chữ trắng
+                backgroundColor: 'black', // Nền đen
+                border: '2px solid black', // Viền đen
+              }}
+            >
+              Proceed to Checkout
+            </Button>
           </div>
         </div>
       </section>

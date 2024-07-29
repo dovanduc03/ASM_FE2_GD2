@@ -228,7 +228,7 @@ export default function ChiTietSanPham() {
                     const productId = Number(getproduct.id);
                     const validCount = buyCount > 0 ? buyCount : 1;
                     addToCart(validCount, productId);
-                    navigate('/cart')
+                    
                   } else {
                     toast.error('Sản phẩm không hợp lệ');
                   }
