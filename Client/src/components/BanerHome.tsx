@@ -14,9 +14,10 @@ const BanerHome: FunctionComponent = () => {
           src="/placeholder@2x.png"
         />
       </div>
-      <Link to={'/'} style={{ textDecoration: "none", color: "black" }}>
-        Home
-      </Link>
+     
+          <div className="relative font-light inline-block min-w-[77px] z-[1]">
+            Home
+          </div>
     </div>
   );
 };
