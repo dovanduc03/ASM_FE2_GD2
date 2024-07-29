@@ -160,34 +160,24 @@
   ],
   "orders": [
     {
+      "count": 1,
+      "productId": 7,
+      "id": 9
+    },
+    {
       "count": 4,
-      "productId": 2,
-      "id": 1
-    },
-    {
-      "count": 3,
-      "productId": 2,
-      "id": 2
+      "productId": 7,
+      "id": 10
     },
     {
       "count": 1,
-      "productId": 8,
-      "id": 6
-    },
-    {
-      "count": 1,
-      "productId": 8,
-      "id": 7
-    },
-    {
-      "count": 1,
-      "productId": 8,
-      "id": 8
+      "productId": 6,
+      "id": 11
     },
     {
       "count": 1,
       "productId": 7,
-      "id": 9
+      "id": 12
     }
   ],
   "products": [

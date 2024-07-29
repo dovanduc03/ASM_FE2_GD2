@@ -10,6 +10,7 @@ import BanerChitiet from "../../components/BanerChitiet";
 import Footer from "../../components/Footer";
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
+import Features from "../../components/ingredient/Features";
 
 export default function ChiTietSanPham() {
   const { id } = useParams();
@@ -280,7 +281,7 @@ export default function ChiTietSanPham() {
         </Grid>
         {/* Thay thế làm slider */}
       </Container>
-      <Footer />
+      <Features />
     </Box>
   );
 }
