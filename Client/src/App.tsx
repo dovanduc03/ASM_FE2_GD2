@@ -22,6 +22,8 @@ import { LoadingProvider } from "./contexts/loading"; // Import the LoadingProvi
 import Editproduct from "./pages/Admin/products/Editproduct";
 import CartList from "./pages/Cart/CartList";
 import Checkout from "./pages/Checkout/Checkout";
+import ProductLike from "./pages/productLike/ProductLike";
+
 
 // Tạo QueryClient
 const queryClient = new QueryClient();
@@ -35,6 +37,13 @@ const routeConfig = [
       { path: "", element: <Home /> },
       { path: "product", element: <ProductList /> },
       { path: "product/:id", element: <ChiTitSnPhm /> },
+    ],
+  },
+  {
+    path: "/like",
+    element: <LayoutUser />, // Hoặc component layout khác bạn muốn sử dụng
+    children: [
+      { path: "", element: <ProductLike /> },
     ],
   },
   {

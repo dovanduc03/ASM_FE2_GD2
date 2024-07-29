@@ -169,7 +169,10 @@ const Header: React.FC = () => {
                 </Menu>
 
                 <Icon color="inherit">
+                  <Link to={'/like'}>
                   <img src="/akariconsheart.svg" alt="Wishlist" />
+                  </Link>
+                 
                 </Icon>
                 <Icon color="inherit">
                   <img src="/antdesignshoppingcartoutlined.svg" alt="Cart" 

@@ -34,7 +34,7 @@ const ProductDetail: FunctionComponent = () => {
       .then(() => toast.success("Đặt hàng thành công"))
       .catch((error) => toast.error(error.message));
   };
-  
+
 
 
 
@@ -46,11 +46,12 @@ const ProductDetail: FunctionComponent = () => {
           <div className="absolute h-full top-[0px] bottom-[0px] left-[72px] w-[481px] z-[1]">
             <div className="absolute h-full top-[0px] bottom-[0px] left-[35px] rounded-3xs bg-linen-200 w-[423px]" />
             <img
-              className="absolute top-[78px] left-[0px] w-[481px] h-[391px] object-cover z-[1]"
+              className="absolute top-[78px] left-[0px] w-[200px] h-[162px] object-cover z-[1]" // Thay đổi kích thước ảnh thành 200x162
               loading="lazy"
               alt=""
               src={getproduct?.image} // Thêm dấu ? để kiểm tra giá trị undefined
             />
+
           </div>
         </div>
       </div>
@@ -149,7 +150,7 @@ const ProductDetail: FunctionComponent = () => {
                       toast.error("Sản phẩm không hợp lệ");
                     }
                   }} // Thêm dấu ? để kiểm tra giá trị undefined
-                > 
+                >
                   <div className="relative text-xl font-poppins text-black text-left inline-block min-w-[119px] z-[1]">
                     Add To Cart
                   </div>

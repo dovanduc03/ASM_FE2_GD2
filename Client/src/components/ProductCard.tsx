@@ -4,6 +4,7 @@ import { IProduct } from '../type/products.type';
 import { getOneProduct } from '../api/productApi';
 import { toast } from 'react-toastify';
 import { addtoCartUser } from '../api/cart';
+import { addtoLikeUser } from '../api/like';
 
 interface Props {
   product: IProduct;
@@ -29,12 +30,12 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
         if (!result.data) {
           return toast.error("Không tìm thấy sản phẩm");
         }
-        setProductList(result.data);
+        setProductList(result.data); // cập nhật state product ở đây
       } catch (error: any) {
         // Xử lý lỗi nếu cần
       }
     };
-
+  
     fetchProduct();
   }, [idParams]);
 
@@ -47,6 +48,19 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
   const handleAddToCart = () => {
     if (product && product.id) {
       addToCart(buyCount, +product.id);
+    } else {
+      toast.error("Sản phẩm không hợp lệ");
+    }
+  };
+  const addToLike = (idPro: number) => {
+    addtoLikeUser(idPro)
+      .then(() => toast.success("thêm sản phẩm yêu thích thành công"))
+      .catch((error) => toast.error(error.message));
+  };
+  
+  const handleAddToLike = () => {
+    if (product && product.id) {
+      addToLike(+product.id);
     } else {
       toast.error("Sản phẩm không hợp lệ");
     }
@@ -75,9 +89,12 @@ const ProductCard: FunctionComponent<Props> = ({ product }) => {
               <img className="w-4 h-4" alt="Compare" src="/comparesvgrepocom-1.svg" />
               <span>Compare</span>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1" onClick={handleAddToLike}>
+              
               <img className="w-4 h-4" alt="Like" src="/heart.svg" />
               <span>Like</span>
+            
+             
             </div>
           </div>
         </div>
