@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -27,9 +28,10 @@ const Banerthanhtoan: FunctionComponent = () => {
       </div>
       <div className="w-full flex flex-row items-center justify-center py-0 px-5 text-base">
         <div className="flex flex-row items-center justify-center gap-[6px]">
-          <div className="relative font-medium inline-block min-w-[48px] z-[1]">
+          <Link to={'/'} style={{ textDecoration: "none", color: "black" }}>
             Home
-          </div>
+          </Link>
+        
           <div className="flex flex-col items-center justify-center pt-0.5 px-0 pb-0">
             <img
               className="w-5 h-5 relative overflow-hidden shrink-0 object-contain z-[1]"

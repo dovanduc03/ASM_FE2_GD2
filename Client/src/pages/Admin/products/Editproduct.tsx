@@ -97,7 +97,7 @@ export default function EditProduct() {
       await mutation.mutateAsync(data);
     } catch (error) {
       console.error("Error submitting form:", error);
-    }
+}
   };
 
   return (
@@ -189,7 +189,7 @@ export default function EditProduct() {
           </Grid>
         </form>
       ) : (
-        <Typography>Loading...</Typography>
+<Typography>Loading...</Typography>
       )}
     </Container>
   );
