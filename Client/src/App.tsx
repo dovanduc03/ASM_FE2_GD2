@@ -21,7 +21,7 @@ import Home from "./pages/User/Home";
 import { LoadingProvider } from "./contexts/loading"; // Import the LoadingProvider
 import Editproduct from "./pages/Admin/products/Editproduct";
 import CartList from "./pages/Cart/CartList";
-import Checkout from "./pages/Checkout/Checkout";
+import Checkout from "./components/Checkout";
 
 
 
@@ -39,13 +39,8 @@ const routeConfig = [
       { path: "product/:id", element: <ChiTitSnPhm /> },
     ],
   },
-  {
-    path: "/like",
-    element: <LayoutUser />, // Hoặc component layout khác bạn muốn sử dụng
-    children: [
-   
-    ],
-  },
+
+
   {
     path: "/cart",
     children: [

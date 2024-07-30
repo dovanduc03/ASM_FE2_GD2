@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { createBill } from '../../api/bill'; // Đảm bảo bạn đã định nghĩa và xuất khẩu hàm createBill trong bill.ts
+
 
 // Define validation schema with yup
 const yupSchema = yup.object({
@@ -27,14 +27,7 @@ const FormInfo: React.FC = () => {
   });
 
   // Hàm xử lý khi form được submit
-  const onSubmit = async (data: any) => {
-    try {
-      await createBill(data); // Gọi hàm tạo hóa đơn
-      toast.success("Đặt hàng thành công");
-    } catch (error: any) {
-      toast.error("Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.");
-    }
-  };
+  
 
   return (
     <Box
@@ -88,7 +81,7 @@ const FormInfo: React.FC = () => {
         Recipient Information
       </Typography>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '100%' }} component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '100%' }} component="form" >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '36px', minWidth: '145px' }}>
           <Typography sx={{ fontWeight: '500' }}>Name</Typography>
           <TextField

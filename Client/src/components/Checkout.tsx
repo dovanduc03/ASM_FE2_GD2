@@ -1,12 +1,13 @@
 import { FunctionComponent } from "react";
-import Header from "../../components/Header";
-import Banerthanhtoan from "../../components/banerthanhtoan";
-import FormInfor from "./FormInfor";
+import Header from "./Header";
+import Banerthanhtoan from "./banerthanhtoan";
 
-import FeatureItems from "../../components/ingredient/FeatureItems";
-import Warranty from "../../components/ingredient/Warranty";
-import Footer from "../../components/Footer";
-import Tinhtonghdct from "./Tinhtonghdct";
+
+import FeatureItems from "./ingredient/FeatureItems";
+import Warranty from "./ingredient/Warranty";
+import Footer from "./Footer";
+import Tinhtonghdct from "../pages/Checkout/Tinhtonghdct";
+import FormInfor from "./FormInfor";
 
 
 const Checkout: FunctionComponent = () => {

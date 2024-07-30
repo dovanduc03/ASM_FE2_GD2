@@ -1,11 +1,8 @@
 import { FunctionComponent, useCallback } from "react";
-import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
-import Features from "../../components/ingredient/Features";
-import BanerHome from "../../components/BanerHome";
 import ProductList from "../../components/ProductList";
 import { useQuery } from "@tanstack/react-query";
-import { IProduct } from "../../type/products.type";
+
 import { productList1 } from "../../api/productApi";
 
 const Home: FunctionComponent = () => {
