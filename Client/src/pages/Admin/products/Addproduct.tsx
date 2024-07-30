@@ -19,7 +19,8 @@ const validateForm = yup.object({
   price: yup.string().required("Giá là bắt buộc"),
 });
 
-type ProductForm = Omit<IProduct, "id">;
+type ProductForm = Omit<IProduct, "id" | "updatedAt">;
+
 const initialFormState = {
   name: "",
   description: "",
@@ -110,6 +111,7 @@ export default function AddProduct() {
       console.error("Lỗi khi gửi biểu mẫu:", error);
     }
   };
+  
 
   return (
     <>

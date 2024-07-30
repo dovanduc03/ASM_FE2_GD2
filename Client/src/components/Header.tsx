@@ -158,7 +158,10 @@ const Header: React.FC = () => {
                   anchorEl={menuAnchorEl}
                   open={Boolean(menuAnchorEl)}
                   onClose={handleCloseMenu}
-                >
+                > 
+                  <MenuItem onClick={() => handleItemClick('/admin')} sx={{ p: 2 }}>
+                    Admin
+                  </MenuItem>
                   <MenuItem onClick={() => handleItemClick('/login')} sx={{ p: 2 }}>
                     Login
                   </MenuItem>

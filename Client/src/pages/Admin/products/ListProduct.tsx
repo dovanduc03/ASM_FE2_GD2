@@ -1,7 +1,8 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Box, Select, MenuItem } from '@mui/material';
+import { useState } from 'react';
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Box, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { cateList } from '../../../api/categories';
 import { deleteProducts, productList1 } from '../../../api/productApi';
 import { IProduct } from '../../../type/products.type';
@@ -11,9 +12,12 @@ import { ICategory } from '../../../type/category.type';
 type ProductType = IProduct[];
 
 // Loại dữ liệu cho danh sách danh mục
-type CategoryType = Pick<ICategory, 'name' | 'id'>[];
+type CategoryType = Pick<ICategory, 'name' | 'id' >[];
 
 export default function ListProduct() {
+  // Trạng thái cho bộ lọc
+  const [filter, setFilter] = useState<string>('');
+
   // Query để lấy danh sách danh mục
   const { data: categoryList, isLoading: isCategoryLoading, isError: categoryError } = useQuery<CategoryType>({
     queryKey: ['categories'],
@@ -27,11 +31,6 @@ export default function ListProduct() {
     queryFn: () => productList1().then(response => response.data),
     staleTime: 5000,
   });
-
-  // Lấy accessToken từ localStorage
-  const accessToken = localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user') as string).accessToken
-    : '';
 
   // Mutation để xóa sản phẩm
   const { mutate: deleteProduct, isError: deleteError } = useMutation({
@@ -54,6 +53,37 @@ export default function ListProduct() {
     }
   };
 
+  // Hàm xử lý lọc sản phẩm
+  const handleFilterChange = (event: SelectChangeEvent<string>) => {
+    setFilter(event.target.value);
+  };
+
+  // Lọc sản phẩm theo tiêu chí
+  const getFilteredProducts = () => {
+    if (!productData) return [];
+
+    switch (filter) {
+      case 'price':
+        return [...productData]
+          .filter(product => !isNaN(parseFloat(product.price)))
+          .sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      case 'price_desc':
+        return [...productData]
+          .filter(product => !isNaN(parseFloat(product.price)))
+          .sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      case 'name':
+        return [...productData]
+          .sort((a, b) => a.name.localeCompare(b.name));
+      case 'name_desc':
+        return [...productData]
+          .sort((a, b) => b.name.localeCompare(a.name));
+      default:
+        return productData;
+    }
+  };
+  
+  const filteredProducts = getFilteredProducts();
+
   // Xử lý lỗi
   if (categoryError) {
     toast.error('Không thể tải danh mục.');
@@ -64,8 +94,6 @@ export default function ListProduct() {
     toast.error('Không thể tải sản phẩm.');
     console.error(productError);
   }
-
-  const products = Array.isArray(productData) ? productData : [];
 
   return (
     <TableContainer component={Paper}>
@@ -78,13 +106,14 @@ export default function ListProduct() {
           variant="outlined"
           size="small"
           sx={{ minWidth: 200 }}
-          value=""
-          onChange={(e) => console.log('Selected Value:', e.target.value)}
+          value={filter}
+          onChange={handleFilterChange}
         >
           <MenuItem value="">Lọc sản phẩm</MenuItem>
           <MenuItem value="price">Giá tăng dần</MenuItem>
           <MenuItem value="price_desc">Giá giảm dần</MenuItem>
-          <MenuItem value="updatedAt">Ngày cập nhật</MenuItem>
+          <MenuItem value="name">Tên A-Z</MenuItem>
+          <MenuItem value="name_desc">Tên Z-A</MenuItem>
         </Select>
       </Box>
 
@@ -114,14 +143,14 @@ export default function ListProduct() {
                 Đang tải...
               </TableCell>
             </TableRow>
-          ) : products.length === 0 ? (
+          ) : filteredProducts.length === 0 ? (
             <TableRow>
               <TableCell colSpan={6} align="center">
                 Không có sản phẩm nào.
               </TableCell>
             </TableRow>
           ) : (
-            products.map((product) => (
+            filteredProducts.map((product) => (
               <TableRow key={product.id}>
                 <TableCell component="th" scope="row">
                   {product.name}

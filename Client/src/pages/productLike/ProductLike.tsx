@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState, FunctionComponent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { deleteCart, descCount } from '../../api/cart';
-
 import Header from '../../components/Header';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
@@ -13,9 +11,8 @@ import {
 import Features from '../../components/ingredient/Features';
 import { ILikeList } from '../../type/Like.type';
 import { deleteLike, getCartLike } from '../../api/like';
-import { IProduct } from '../../type/products.type';
 
-
+// In dữ liệu sản phẩm yêu thích
 const ProductLike: FunctionComponent = () => {
 
 
@@ -26,8 +23,7 @@ const ProductLike: FunctionComponent = () => {
         getCartLike().then(({ data }) => setLike(data));
     }, []);
 
-
-
+        // Hàm xóa sản phẩm yêu thích
     const handleDeleteLike = (id: number) => {
         const confirmDelete = confirm('Bạn có chắc chắn muốn xóa không?');
         if (confirmDelete) {
@@ -40,25 +36,8 @@ const ProductLike: FunctionComponent = () => {
 
 
 
-    const handleOnChangeInput = (value: number | string, id: number) => {
-        const newCount = Number(value);
-
-        setLike((prevCartList) => {
-            return prevCartList.map((item) => {
-                if (item.id === id) {
-                    descCount(newCount, id).then(() => { });
-                    return { ...item, count: newCount };
-                }
-                return item;
-            });
-        });
-    };
 
 
-
-    const handleProceedToCheckout = () => {
-        navigate('/cart/checkout');
-    };
 
     return (
         <div className="w-full relative bg-color-white overflow-hidden flex flex-col items-start justify-start pt-0 px-0 pb-[50px] box-border leading-[normal] tracking-[normal]">

@@ -80,7 +80,7 @@ const Tinhtonghdct: FunctionComponent = () => {
       <div className="flex flex-col items-center justify-center gap-[14px] text-base">
         {/* Tổng cộng */}
         <div className="text-center">
-          <h1 className="m-0 text-inherit font-medium">Total</h1>
+          <h1 >Total</h1>
           <b className="text-5xl text-primary">
             {totalCurrentPurchasePrice.toFixed(0)}₫
           </b>

@@ -9,7 +9,7 @@ const BASE_URL = '/products';
 const createProducts = ({
   data,
 }: {
-  data: Omit<IProduct, "id">;
+  data: Omit<IProduct, "id" | "updatedAt">;
 }) => http.post(`${BASE_URL}`, data);
 
 // Lấy danh sách sản phẩm

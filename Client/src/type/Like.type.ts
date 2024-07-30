@@ -1,6 +1,6 @@
-import { IProduct } from "./products.type";
 
- 
+
+
 export interface ILike{
     productId: number;
     id: number;
