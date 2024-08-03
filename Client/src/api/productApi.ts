@@ -16,7 +16,10 @@ const createProducts = ({
 const productList1 = async () => await http.get<IProduct[]>(`${BASE_URL}`);
 
 // Lấy thông tin sản phẩm theo ID
-const getOneProduct = (id: string) => http.get<IProduct>("products/" + id);
+
+export const getOneProduct = (id: string) => {
+  return axios.get(`http://localhost:5001/products/${id}`);
+};
 
 
 // Xóa sản phẩm theo ID
@@ -42,5 +45,4 @@ export {
   createProducts,
   deleteProducts,
   productList1,
-  getOneProduct
 };

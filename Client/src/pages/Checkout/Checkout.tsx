@@ -5,7 +5,7 @@ import FeatureItems from "../../components/ingredient/FeatureItems";
 import Warranty from "../../components/ingredient/Warranty";
 import Footer from "../../components/Footer";
 import Tinhtonghdct from "./Tinhtonghdct";
-import FormInfor from "../../components/FormInfor";
+import FormInfor from "./FormInfor";
 
 
 const Checkout: FunctionComponent = () => {

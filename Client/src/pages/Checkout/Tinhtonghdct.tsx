@@ -28,7 +28,7 @@ const Tinhtonghdct: FunctionComponent = () => {
 
     return Object.values(groupedById).reduce((total, item) => {
       const { total: count, price } = item;
-      return total + (count * price);
+      return total + count * price;
     }, 0);
   }, [cartList]);
 
@@ -77,20 +77,13 @@ const Tinhtonghdct: FunctionComponent = () => {
       )}
 
       {/* Hiển thị tổng cộng và nút "Place order" */}
-      <div className="flex flex-col items-center justify-center gap-[14px] text-base">
+      <div className="self-stretch flex flex-row items-center justify-end gap-[14px] text-base">
         {/* Tổng cộng */}
-        <div className="text-center">
-          <h1 >Total</h1>
+        <div className="flex flex-col items-end">
+          <h1 className="text-right">Total</h1>
           <b className="text-5xl text-primary">
             {totalCurrentPurchasePrice.toFixed(0)}₫
           </b>
-        </div>
-
-        {/* Nút "Place order" */}
-        <div className="flex justify-center">
-          <button className="py-[15px] px-5 bg-transparent w-[400px] rounded-mini border-[1px] border-black hover:bg-darkslategray-300 hover:border-darkslategray-100">
-            <div className="text-xl font-poppins text-black">Place order</div>
-          </button>
         </div>
       </div>
     </div>

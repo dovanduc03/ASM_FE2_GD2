@@ -23,6 +23,8 @@ import Editproduct from "./pages/Admin/products/Editproduct";
 import CartList from "./pages/Cart/CartList";
 import Checkout from "./pages/Checkout/Checkout";
 import ProductLike from "./pages/productLike/ProductLike";
+import ListBill from "./pages/Admin/Bill/ListBill";
+
 
 
 // Tạo QueryClient
@@ -64,6 +66,7 @@ const routeConfig = [
       { path: "category", element: <ListCate /> },
       { path: "category/add", element: <AddCate /> },
       { path: "category/edit/:id", element: <AddCate /> },
+      { path: "listbill", element: <ListBill /> },
     ],
   },
   { path: "/login", element: <Login /> },

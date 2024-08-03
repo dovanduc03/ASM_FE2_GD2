@@ -66,6 +66,16 @@ export default function MainLayout() {
               </ListItemButton>
             </NavLink>
           </ListItem>
+          <ListItem disablePadding>
+            <NavLink to="/admin/ListBill" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Category />
+                </ListItemIcon>
+                <ListItemText primary="Orders" />
+              </ListItemButton>
+            </NavLink>
+          </ListItem>
         </List>
         <List sx={{ mt: 'auto' }}>
           <ListItem disablePadding>

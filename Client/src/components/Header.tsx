@@ -14,12 +14,15 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  CircularProgress
+  CircularProgress,
+  Grid,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../pages/Auth/AuthContext";
 import { Search } from "@mui/icons-material";
+import { toast } from "react-toastify";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Logo = styled('img')({
   height: '32px',
@@ -53,7 +56,7 @@ const Header: React.FC = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
-
+  const matches = useMediaQuery((theme: any) => theme.breakpoints.up('md'));
 
   const open = Boolean(anchorEl);
   const { isAuthenticated, logout } = useAuth();
@@ -80,8 +83,9 @@ const Header: React.FC = () => {
       const results = await response.json();
       setSearchResults(results);
       setDialogOpen(true);
+
     } catch (error) {
-      console.error('Lỗi khi tìm kiếm:', error);
+      toast.error('Lỗi khi tìm kiếm:');
     } finally {
       setLoading(false);
     }
@@ -104,33 +108,35 @@ const Header: React.FC = () => {
     setMenuAnchorEl(null);
   };
 
-
   return (
     <>
       <AppBar position="sticky" color="default">
         <Container maxWidth="lg">
           <Toolbar disableGutters>
-            <Box display="flex" alignItems="center" flexGrow={1}>
-              <Logo src="/meubel-house-logos05@2x.png" alt="Furniro" />
-              <Typography variant="h6" component="a" href="/" sx={{ marginLeft: 2, textDecoration: 'none', color: 'inherit' }}>
-                Furniro
-              </Typography>
-            </Box>
-            <NavLinks>
-              <NavItem>
-                <Link to='/'>Home</Link>
-              </NavItem>
-              <NavItem>
-                <Link to='/'>Shop</Link>
-              </NavItem>
-              <NavItem >
-                About
-              </NavItem>
-              <NavItem >
-                Contact
-              </NavItem>
-              <Box display="flex" alignItems="center">
-                {/* search */}
+            <Grid container alignItems="center" justifyContent="space-between">
+              <Grid item xs={6} md={2} display="flex" alignItems="center">
+                <Logo src="/meubel-house-logos05@2x.png" alt="Furniro" />
+                {matches && (
+                  <Typography variant="h6" component="a" href="/" sx={{ marginLeft: 2, textDecoration: 'none', color: 'inherit' }}>
+                    Furniro
+                  </Typography>
+                )}
+              </Grid>
+              {matches && (
+                <Grid item md={6} display="flex" justifyContent="center">
+                  <NavLinks>
+                    <NavItem>
+                      <Link to='/'>Home</Link>
+                    </NavItem>
+                    <NavItem>
+                      <Link to='/'>Shop</Link>
+                    </NavItem>
+                    <NavItem>About</NavItem>
+                    <NavItem>Contact</NavItem>
+                  </NavLinks>
+                </Grid>
+              )}
+              <Grid item xs={6} md={4} display="flex" alignItems="center" justifyContent="flex-end">
                 <Box
                   component="form"
                   sx={{ display: 'flex', alignItems: 'center', mr: 2 }}
@@ -149,8 +155,6 @@ const Header: React.FC = () => {
                     <Search />
                   </IconButton>
                 </Box>
-                {/* search */}
-                {/* Account */}
                 <IconButton color="inherit" onClick={handleMenuClick} sx={{ mr: 1 }}>
                   <img src="/mdiaccountalertoutline.svg" alt="Account" />
                 </IconButton>
@@ -168,23 +172,17 @@ const Header: React.FC = () => {
                   <MenuItem onClick={() => handleItemClick('/register')} sx={{ p: 2 }}>
                     Register
                   </MenuItem>
-
                 </Menu>
-
                 <Icon color="inherit">
                   <Link to={'/like'}>
-                  <img src="/akariconsheart.svg" alt="Wishlist" />
+                    <img src="/akariconsheart.svg" alt="Wishlist" />
                   </Link>
-                 
                 </Icon>
                 <Icon color="inherit">
-                  <img src="/antdesignshoppingcartoutlined.svg" alt="Cart" 
-                  onClick={()=>{
-                    navigate('/cart')
-                  }}/>
+                  <img src="/antdesignshoppingcartoutlined.svg" alt="Cart" onClick={() => navigate('/cart')} />
                 </Icon>
-              </Box>
-            </NavLinks>
+              </Grid>
+            </Grid>
           </Toolbar>
         </Container>
       </AppBar>
@@ -199,7 +197,7 @@ const Header: React.FC = () => {
             <Box>
               {searchResults.length > 0 ? (
                 searchResults.map((product: any) => (
-                  <Link to={`/${product.id}/product`} key={product.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <Link to={`/product/${product.id}`} key={product.id} style={{ textDecoration: 'none', color: 'inherit' }}>
                     <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
                       <img src={product.image} alt={product.name} style={{ width: 50, height: 50, marginRight: 16 }} />
                       <Box>
@@ -224,4 +222,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
