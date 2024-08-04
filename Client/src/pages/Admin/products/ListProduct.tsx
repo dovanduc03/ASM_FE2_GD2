@@ -83,6 +83,7 @@ export default function ListProduct() {
   //     toast.error('Có lỗi xảy ra khi tìm kiếm sản phẩm');
   //     console.error(error);
   //   });
+  //update
   // };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
