@@ -156,7 +156,7 @@
   ],
   "orders": [
     {
-      "count": 1,
+      "count": 4,
       "productId": 9,
       "id": 12
     },
@@ -174,14 +174,14 @@
       "count": 1,
       "productId": 8,
       "id": 24
-    }
-  ],
-  "likes": [
+    },
     {
+      "count": 2,
       "productId": 7,
-      "id": 1
+      "id": 25
     }
   ],
+  "likes": [],
   "products": [
     {
       "price": "7800000",
